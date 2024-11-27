@@ -15,13 +15,6 @@ namespace UartCommLib {
         METHOD_RESPONSE_NO_ACK = 4 | 0x8,
     } Method;
 
-    enum class State : uint8_t {
-        IDLE = 0,
-        RECEIVING = 1,
-        SENDING = 2,
-        WAITING_ACK = 3,
-    };
-
     struct PacketBase {
         PacketBase() = default;
         static constexpr uint8_t PACKET_HEADER = 0xFF;

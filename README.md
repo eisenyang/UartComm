@@ -12,3 +12,22 @@
 - `UartCommHelpers.hpp`：提供了串口通信的辅助函数。
 - `UartCommTypes.h`：定义了串口通信中使用的类型。
 
+## 使用方法
+```
+#include "UartComm.hpp"
+using MyComm = UartComm<HardwareSerial, BasicPacket, 1>;
+
+MyComm myComm(Serial1);
+
+void setup() {
+    Serial.begin(115200);
+    Serial1.begin(115200);
+    myComm.onReceive([](const BasicPacket &packet) {
+        Serial.printf("method: %d, topic: %d, payloadSize: %d\n", packet.method, packet.topic, packet.payloadSize);
+    });
+}
+
+void loop() {
+    myComm.loop();
+}
+```
